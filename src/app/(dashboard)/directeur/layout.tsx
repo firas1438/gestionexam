@@ -3,7 +3,20 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function DashboardLayout({
+const menuItems = [
+  {
+    title: "MENU",
+    items: [
+      {
+        icon: "/approved.png",
+        label: "Valider planning",
+        href: "/directeur",
+      },
+    ],
+  },
+];
+
+export default function DirecteurLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -17,9 +30,12 @@ export default function DashboardLayout({
           className="flex items-center justify-center lg:justify-start gap-4"
         >
           <Image src="/logo.png" alt="logo" width={50} height={50} />
-          <span className="hidden lg:block font-semibold mt-1 text-gray-600 text-[14px]">Dashboard</span>
+          <span className="hidden lg:block font-semibold mt-1 text-gray-600 text-[14px]">
+            Dashboard
+          </span>
         </Link>
-        <Menu />
+        {/* Pass menuItems to Menu */}
+        <Menu menuItems={menuItems} />
       </div>
 
       {/* RIGHT */}

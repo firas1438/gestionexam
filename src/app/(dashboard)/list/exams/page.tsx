@@ -21,76 +21,26 @@ type Exam = {
 };
 
 const columns = [
-  {
-    header: "Exam ID",
-    accessor: "exam_id",
-  },
-  {
-    header: "Matiere",
-    accessor: "subject",
-  },
-  {
-    header: "Dep. ID",
-    accessor: "department_id",
-  },
-  {
-    header: "Date",
-    accessor: "exam_date",
-  },
-  {
-    header: "Start Time",
-    accessor: "start_time",
-  },
-  {
-    header: "End Time",
-    accessor: "end_time",
-  },
-  {
-    header: "Duration",
-    accessor: "duration",
-  },
-  {
-    header: "Coeff.",
-    accessor: "coefficient",
-  },
-  {
-    header: "Salle",
-    accessor: "salle",
-  },
-  {
-    header: "Actions",
-    accessor: "action",
-  },
+  { header: "Exam ID", accessor: "exam_id" },
+  { header: "Matiere", accessor: "subject" },
+  { header: "Dep. ID", accessor: "department_id" },
+  { header: "Date", accessor: "exam_date" },
+  { header: "Start Time", accessor: "start_time" },
+  { header: "End Time", accessor: "end_time" },
+  { header: "Duration", accessor: "duration" },
+  { header: "Coeff.", accessor: "coefficient" },
+  { header: "Salle", accessor: "salle" },
+  { header: "Actions", accessor: "action" },
 ];
 
-const ITEMS_PER_PAGE = 10; // Number of items per page
+const ITEMS_PER_PAGE = 10;
 
 const ExamListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
   const totalPages = Math.ceil(subjectsData.length / ITEMS_PER_PAGE);
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-  };
-
   const renderRow = (item: Exam) => (
-    <tr
-      key={item.exam_id}
-      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
-    >
+    <tr key={item.exam_id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
       <td className="p-5">{item.exam_id}</td>
       <td>{item.subject}</td>
       <td>{item.department_id}</td>
@@ -113,7 +63,7 @@ const ExamListPage = () => {
     </tr>
   );
 
-  // Calculate the data to display for the current page
+  // Calculate the data for the current page
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentData = subjectsData.slice(startIndex, endIndex);
@@ -127,25 +77,21 @@ const ExamListPage = () => {
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/filter.png" alt="" width={14} height={14} />
+              <Image src="/filter.png" alt="Filter" width={14} height={14} />
             </button>
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/sort.png" alt="" width={14} height={14} />
+              <Image src="/sort.png" alt="Sort" width={14} height={14} />
             </button>
             {role === "admin" && <FormModal table="exam" type="create" />}
           </div>
         </div>
       </div>
+
       {/* LIST */}
       <Table columns={columns} renderRow={renderRow} data={currentData} />
+
       {/* PAGINATION */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onNextPage={handleNextPage}
-        onPrevPage={handlePrevPage}
-        onPageClick={handlePageClick}
-      />
+      <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
 };
