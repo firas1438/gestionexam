@@ -1214,7 +1214,47 @@ export const chefData = [
   }
 ];
 
-
+export const DepExamData = [
+  {
+    exam_id: 7,
+    subject: "Programmation C++",
+    department_id: 1,
+    exam_date: "2025-02-15",
+    start_time: "8:30",
+    end_time: "10:00",
+    coefficient: 1.5,
+    duration: "1.5h",
+    salle: "A31",
+    surveillant: "Sami Hammami",
+    status: "true"
+  },
+  {
+    exam_id: 8,
+    subject: "Programmation Mobile",
+    department_id: 1,
+    exam_date: "2025-02-16",
+    start_time: "9:00",
+    end_time: "10:30",
+    coefficient: 2,
+    duration: "1.5h",
+    salle: "B12",
+    surveillant: "Samir Alrfawi",
+    status: "false"
+  },
+  {
+    exam_id: 9,
+    subject: "Python",
+    department_id: 1,
+    exam_date: "2025-02-17",
+    start_time: "10:00",
+    end_time: "11:30",
+    coefficient: 1.8,
+    duration: "1.5h",
+    salle: "C22",
+    surveillant: "-",
+    status: "false"
+  },
+];
 
 export const classesData = [
   {

@@ -40,7 +40,7 @@ const ReservationModal = ({
           <div
             className={`bg-white p-4 rounded-md relative ${
               type === "reserve"
-                ? "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]" // Old measurements for reserve mode
+                ? "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]" // Old measurements for reservemode
                 : "w-[95%] md:w-[90%] lg:w-[85%] xl:w-[80%] 2xl:w-[75%] max-w-screen-2xl" // Wider for view mode
             }`}
           >

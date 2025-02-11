@@ -140,7 +140,7 @@ export default function DirecteurPage() {
       <div className="text-center text-sm text-gray-700 mt-10">
       <p>Après avoir vérifié les plannings de votre département, vous devrez cliquer sur le bouton <strong>Valider</strong>.</p>
       <p>Notez bien que la validation <em>ne peut pas avoir lieu sans la validation des autres "chefs de départements"</em>.</p>
-      <p> Notez bien que cette action est irréversible </p>
+      <p>* Cette action est irréversible *</p>
 
       </div>
 

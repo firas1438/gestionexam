@@ -10,32 +10,23 @@ const menuItems = [
       {
         icon: "/home.png",
         label: "Home",
-        href: "/admin",
-        visible: ["admin"],
+        href: "/chef",
       },
       {
-        icon: "/subject.png",
-        label: "Gestion d'examens",
-        href: "/list/exams",
-        visible: ["admin"],
+        icon: "/check.png",
+        label: "Exams Validés",
+        href: "/list/validexam",
       },
       {
-        icon: "/class.png",
-        label: "Gestion des salles",
-        href: "/list/salles",
-        visible: ["admin"],
-      },
-      {
-        icon: "/student.png",
-        label: "Gestion surveillants",
-        href: "/list/surveillants",
-        visible: ["admin"],
+        icon: "/cross.png",
+        label: "Exams Non Validés",
+        href: "/list/notvalidexam",
       },
     ],
   },
 ];
 
-export default function AdminLayout({
+export default function ChefLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

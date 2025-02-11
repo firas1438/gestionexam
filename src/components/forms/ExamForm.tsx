@@ -61,6 +61,7 @@ const ExamForm = ({ type, data }: { type: "create" | "update"; data?: any }) => 
 
   // Watch the subject field to update the coefficient dynamically
   const selectedSubject = watch("subject");
+  
   useEffect(() => {
     if (selectedSubject) {
       const selectedSubjectData = subjectsData.find(

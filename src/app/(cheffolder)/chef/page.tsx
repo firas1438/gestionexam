@@ -4,9 +4,10 @@ import { useState } from 'react';
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import { chefData } from "@/lib/data";
+import { DepExamData } from "@/lib/data";
 import Image from "next/image";
 import UserCard from "@/components/UserCard";
+import ExamsPieChart from '@/components/PieChart';
 
 type Exam = {
   exam_id: number;
@@ -19,6 +20,7 @@ type Exam = {
   duration: string;
   salle: string;
   surveillant: string;
+  status: string;
 };
 
 const columns = [
@@ -32,6 +34,7 @@ const columns = [
   { header: "Coefficient", accessor: "coefficient" },
   { header: "Salle", accessor: "salle" },
   { header: "Surveillant", accessor: "surveillant" },
+  { header: "Status", accessor: "status"}
 ];
 
 const ITEMS_PER_PAGE = 10;
@@ -39,16 +42,17 @@ const ITEMS_PER_PAGE = 10;
 export default function ChefPage() {
   {/* lel pagination */}
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(chefData.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(DepExamData.length / ITEMS_PER_PAGE);
   // Calculate the current page data
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentData = chefData.slice(startIndex, endIndex);
+  const currentData = DepExamData.slice(startIndex, endIndex);
 
 
 
 
   const renderRow = (item: Exam) => (
+    
     <tr key={item.exam_id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
       <td className="p-5">{item.exam_id}</td>
       <td>{item.subject}</td>
@@ -60,8 +64,18 @@ export default function ChefPage() {
       <td>{item.coefficient}</td>
       <td>{item.salle}</td>
       <td>{item.surveillant}</td>
+      <td className="text-center">
+        <Image
+          src={item.status === "true"  ? "/validated.png" : "/notvalidated.png"}
+          alt={item.status ? "Validated" : "Not Validated"}
+          width={22}
+          height={22}
+          className="inline-block"
+        />
+      </td>
     </tr>
   );
+  
 
   return (
     <div className="p-4 flex flex-col items-center w-full">
@@ -97,24 +111,10 @@ export default function ChefPage() {
 
         {/* PAGINATION */}
         <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
-      </div>
 
 
-      {/* BUTTON TEXT */}
-      <div className="text-center text-sm text-gray-700 mt-6">
-        <p>Après la vérification des plannings concernant votre département, vous devrez cliquer sur le bouton <strong>Valider</strong>.</p>
-        <p>* Cette action est irréversible *</p>
       </div>
 
-      {/* BUTTON */}
-      <div className="w-full mt-8 mb-4">
-        <button
-          type="button"
-          className="w-full bg-[#1c933b] text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-[#41c237] transition-colors duration-300"
-        >
-          Valider toutes les entrées
-        </button>
-      </div>
     </div>
   );
 }
