@@ -7,6 +7,7 @@ import TableSearch from "@/components/TableSearch";
 import { directeurData } from "@/lib/data";
 import Image from "next/image";
 import UserCard from "@/components/UserCard";
+import DepartmentCard from '@/components/DepartmentCard';
 
 type Exam = {
   exam_id: number;
@@ -60,6 +61,7 @@ export default function DirecteurPage() {
 
   return (
     <div className="p-4 flex flex-col items-center w-full">
+      
       {/* USER CARDS */}
       <div className="flex gap-4 justify-center flex-wrap w-full">
         <UserCard type="Directeur des étude" count="Imed ABBASI" />
@@ -73,7 +75,9 @@ export default function DirecteurPage() {
       <div className="mt-16 w-full">
         {/* TOP */}
         <div className="flex items-center justify-between">
-          <h1 className="hidden md:block text-lg font-semibold">Les examens de toutes les départements:</h1>
+          <h1 className="hidden md:block text-lg font-semibold">
+            Les examens de toutes les départements:
+          </h1>
           <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
             <TableSearch />
             <div className="flex items-center gap-4 self-end">
@@ -92,70 +96,68 @@ export default function DirecteurPage() {
 
         {/* PAGINATION */}
         <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
+
       </div>
 
-      <div className="flex space-x-8 mt-10">
+      {/* DEP CARDS */}
+      <div className="flex flex-wrap justify-center gap-4 w-full mt-10">
+        {/* CARD0 */}
+        <DepartmentCard imageSrc="/logo.png" title="Tous les départements" />
+
         {/* CARD1 */}
-        <div className="relative w-1/3 p-8 overflow-hidden bg-white shadow-lg rounded-2xl transform hover:scale-105 transition-transform duration-300">
-          <img alt="moto" src="/lap.png" className="absolute w-40 h-40 mb-14 -right-14 -bottom-16" />
-          <div className="w-4/6">
-            <p className="mb-4 text-lg font-medium text-gray-800">
-              Département Informatique
-            </p>
-            <p className="text-xs text-gray-500 flex items-center">
-            Status de validation:
-              <img src="/validated.png" alt="status icon" className="ml-2 w-4 h-4" />
-            </p>
-          </div>
-        </div>
-        {/* CARD 2 */}
-        <div className="relative w-1/3 p-8 overflow-hidden bg-white shadow-lg rounded-2xl transform hover:scale-105 transition-transform duration-300">
-          <img alt="moto" src="/math.png" className="absolute w-40 h-40 mb-14 -right-14 -bottom-16" />
-          <div className="w-4/6">
-            <p className="mb-4 text-lg font-medium text-gray-800">
-              Département Mathématiques
-            </p>
-            <p className="text-xs text-gray-500 flex items-center">
-            Status de validation:
-              <img src="/notvalidated.png" alt="status icon" className="ml-2 w-4 h-4" />
-            </p>
-          </div>
-        </div>
-        {/* CARD 3 */}
-        <div className="relative w-1/3 p-8 overflow-hidden bg-white shadow-lg rounded-2xl transform hover:scale-105 transition-transform duration-300">
-          <img alt="moto" src="/elec.png" className="absolute w-40 h-40 mb-14 -right-16 -bottom-16" />
-          <div className="w-4/6">
-            <p className="mb-4 text-lg font-medium text-gray-800">
-              Département Electrique
-            </p>
-            <p className="text-xs text-gray-500 flex items-center">
-              Status de validation:
-              <img src="/notvalidated.png" alt="status icon" className="ml-2 w-4 h-4" />
-            </p>
-          </div>
-        </div>
+        <DepartmentCard
+          imageSrc="/lap.png"
+          title="Département Informatique"
+          statusText="Status de validation:"
+          statusIcon="/validated.png"
+        />
+
+        {/* CARD2 */}
+        <DepartmentCard
+          imageSrc="/math.png"
+          title="Département Mathématiques"
+          statusText="Status de validation:"
+          statusIcon="/notvalidated.png"
+        />
+
+        {/* CARD3 */}
+        <DepartmentCard
+          imageSrc="/elec.png"
+          title="Département Electrique"
+          statusText="Status de validation:"
+          statusIcon="/notvalidated.png"
+          imageClassName="absolute w-40 h-40 mb-14 -right-16 -bottom-16" // Custom positioning for this card
+        />
       </div>
 
       {/* BUTTON TEXT */}
       <div className="text-center text-sm text-gray-700 mt-10">
-      <p>Après avoir vérifié les plannings de votre département, vous devrez cliquer sur le bouton <strong>Valider</strong>.</p>
-      <p>Notez bien que la validation <em>ne peut pas avoir lieu sans la validation des autres "chefs de départements"</em>.</p>
-      <p>* Cette action est irréversible *</p>
-
+        <p>
+          Après avoir vérifié les plannings de votre département, vous devrez
+          cliquer sur le bouton <strong>Valider</strong>.
+        </p>
+        <p>
+          Notez bien que la validation{" "}
+          <em>
+            ne peut pas avoir lieu sans la validation des autres "chefs de
+            départements"
+          </em>
+          .
+        </p>
+        <p>* Cette action est irréversible *</p>
       </div>
 
-        {/* BUTTON */}
-        {/* initiallement disabled, t7eb traja3ha mrigla fasa5 l "disabled mel button props" */}
-        <div className="w-full mt-8 mb-4">
-            <button
-                type="button"
-                className="w-full bg-[#1c933b] text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-[#41c237] transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
-                
-            >
-                Valider toutes les entrées
-            </button>
-        </div>
-      
+      {/* VALIDER BUTTON */}
+      <div className="w-full mt-8 mb-4">
+        <button
+          type="button"
+          className="w-full bg-[#1c933b] text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-[#41c237] transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          disabled
+        >
+          Valider toutes les entrées
+        </button>
+      </div>
+
     </div>
   );
 }
