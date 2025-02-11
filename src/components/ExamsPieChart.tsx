@@ -3,14 +3,14 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const data = [
-  { name: "Examens validés", value: 159, color:"#0fc0fc"  }, // Green
-  { name: "Examens non validés", value: 135, color: "#CFCEFF" }, // Red
+  { name: "Examens validés", value: 69, color: "#FAE27C" },
+  { name: "Examens non validés", value: 135, color: "#CFCEFF" },
 ];
 
 const ExamsPieChart = () => {
   return (
     <div className=" rounded-xl w-full h-full p-4 flex flex-col items-center">
-      <h1 className="text-lg font-semibold ">Statistiques de validation des examens</h1>
+      <h1 className="text-lg font-semibold">Statistiques de validation des examens</h1>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
@@ -28,9 +28,12 @@ const ExamsPieChart = () => {
             ))}
           </Pie>
           <Tooltip />
-          <Legend />
+          <Legend
+            formatter={(value) => <span style={{ fontWeight: "bold", fontSize: "14px" }}>{value}</span>}
+          />
         </PieChart>
       </ResponsiveContainer>
+      
     </div>
   );
 };

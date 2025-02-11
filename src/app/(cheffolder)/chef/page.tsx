@@ -7,7 +7,8 @@ import TableSearch from "@/components/TableSearch";
 import { DepExamData } from "@/lib/data";
 import Image from "next/image";
 import UserCard from "@/components/UserCard";
-import ExamsPieChart from '@/components/PieChart';
+import ExamsPieChart from '@/components/ExamsPieChart';
+
 
 type Exam = {
   exam_id: number;
@@ -88,8 +89,9 @@ export default function ChefPage() {
         <UserCard type="Etudiant" count={223} />
       </div>
 
+
       {/* TABLE */}
-      <div className="mt-16 w-full">
+      <div className="mt-16 w-full  p-4 rounded-lg">
         {/* TOP */}
         <div className="flex items-center justify-between">
           <h1 className="hidden md:block text-lg font-semibold">Tous les examens du département:</h1>
@@ -111,8 +113,10 @@ export default function ChefPage() {
 
         {/* PAGINATION */}
         <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
+      </div>
 
-
+      <div className ='mt-5'>
+        <ExamsPieChart/>
       </div>
 
     </div>

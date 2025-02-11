@@ -61,7 +61,6 @@ export default function DirecteurPage() {
 
   return (
     <div className="p-4 flex flex-col items-center w-full">
-      
       {/* USER CARDS */}
       <div className="flex gap-4 justify-center flex-wrap w-full">
         <UserCard type="Directeur des étude" count="Imed ABBASI" />
@@ -96,7 +95,6 @@ export default function DirecteurPage() {
 
         {/* PAGINATION */}
         <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
-
       </div>
 
       {/* DEP CARDS */}
@@ -157,7 +155,7 @@ export default function DirecteurPage() {
           Valider toutes les entrées
         </button>
       </div>
-
+      
     </div>
   );
 }
