@@ -18,7 +18,7 @@ const DepartmentCard: React.FC<DepartmentCardProps> = ({
   imageClassName = "absolute w-40 h-40 mb-14 -right-14 -bottom-16",
 }) => {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-[23%] p-8 overflow-hidden bg-white shadow-lg rounded-2xl transform hover:scale-105 transition-transform duration-300">
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-[23%] min-w-[300px] gap-4 p-8 overflow-hidden bg-white shadow-lg rounded-2xl transform hover:scale-105 transition-transform duration-300 relative">
       <img
         alt={imageAlt}
         src={imageSrc}

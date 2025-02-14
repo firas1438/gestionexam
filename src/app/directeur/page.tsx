@@ -98,7 +98,7 @@ export default function DirecteurPage() {
       </div>
 
       {/* DEP CARDS */}
-      <div className="flex flex-wrap justify-center gap-4 w-full mt-10">
+      <div className="flex flex-wrap justify-center gap-3 w-full mt-10">
         {/* CARD0 */}
         <DepartmentCard imageSrc="/logo.png" title="Tous les départements" />
 

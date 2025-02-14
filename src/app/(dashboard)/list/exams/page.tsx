@@ -69,7 +69,7 @@ const ExamListPage = () => {
   const currentData = subjectsData.slice(startIndex, endIndex);
 
   return (
-    <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+    <div className="bg-white p-4 rounded-lg flex-1 m-4 mt-0">
       {/* TOP */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">Tous les examens</h1>
@@ -82,7 +82,7 @@ const ExamListPage = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="Sort" width={14} height={14} />
             </button>
-            {role === "admin" && <FormModal table="exam" type="create" />}
+            <FormModal table="exam" type="create" />
           </div>
         </div>
       </div>
