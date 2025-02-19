@@ -7,7 +7,7 @@ import InputField from "../InputField";
 
 // Define the schema for the form
 const schema = z.object({
-  examen: z.string().min(1, { message: "Examen est requis!" }), // User must choose a examen
+  examen: z.string().min(1, { message: "Matière est requis!" }), // User must choose a subject
   duration: z.string().min(1, { message: "Durée est requis!" }), // User must choose a duration
   date: z.string().min(1, { message: "Date est requis!" }), // User must pick a date
 });
@@ -47,12 +47,12 @@ const ExamForm = ({type,data,id}: {
 
               {/* Matière Field (Dropdown list) */}
               <div className="flex flex-col gap-2 w-3/4">
-                <label className="text-xs text-gray-500">Examen</label>
+                <label className="text-xs text-gray-500">Matière</label>
                 <select
                   {...register("examen")} // Register the examen field
                   className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
                 >
-                  <option value="">Sélectionnez un examen</option>
+                  <option value="">Sélectionnez une matière</option>
                   {/* Backend engineer (Lbaby) will populate options here */}
                 </select>
                 {errors.examen && (
@@ -120,7 +120,7 @@ const ExamForm = ({type,data,id}: {
             <div className="flex gap-4 w-full">
               {/* Matière Field (Locked Text Field) */}
               <div className="flex flex-col gap-2 w-3/4">
-                <label className="text-xs text-gray-500">Examen</label>
+                <label className="text-xs text-gray-500">Matière</label>
                 <input
                   type="text"
                   className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full bg-gray-100 cursor-not-allowed"

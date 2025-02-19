@@ -33,7 +33,67 @@ const mockData = [
     debut: "08:00",
     fin: "10:00",
   },
-  
+  {
+    examen: "Java 2 ",
+    salle: "A32",
+    duration: "1.5h",
+    date: "2023-10-16",
+    debut: "10:00",
+    fin: "12:00",
+  },
+  {
+    examen: "Anglais",
+    salle: "A31",
+    duration: "1h",
+    date: "2023-10-17",
+    debut: "08:00",
+    fin: "10:00",
+  },  {
+    examen: "Java 2 ",
+    salle: "A32",
+    duration: "1.5h",
+    date: "2023-10-16",
+    debut: "10:00",
+    fin: "12:00",
+  },
+  {
+    examen: "Anglais",
+    salle: "A31",
+    duration: "1h",
+    date: "2023-10-17",
+    debut: "08:00",
+    fin: "10:00",
+  },  {
+    examen: "Java 2 ",
+    salle: "A32",
+    duration: "1.5h",
+    date: "2023-10-16",
+    debut: "10:00",
+    fin: "12:00",
+  },
+  {
+    examen: "Anglais",
+    salle: "A31",
+    duration: "1h",
+    date: "2023-10-17",
+    debut: "08:00",
+    fin: "10:00",
+  },  {
+    examen: "Java 2 ",
+    salle: "A32",
+    duration: "1.5h",
+    date: "2023-10-16",
+    debut: "10:00",
+    fin: "12:00",
+  },
+  {
+    examen: "Anglais",
+    salle: "A31",
+    duration: "1h",
+    date: "2023-10-17",
+    debut: "08:00",
+    fin: "10:00",
+  },
 ];
 
 type Teacher = {
@@ -94,7 +154,7 @@ const TeacherListPage = () => {
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">Teacher List</h1>
+        <h1 className="hidden md:block text-lg font-semibold">Tous les surveillants</h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
@@ -109,8 +169,10 @@ const TeacherListPage = () => {
       </div>
 
       {/* LIST */}
+      <div className="mt-9">
       <Table columns={columns} renderRow={renderRow} data={currentData} />
-
+      </div>
+      
       {/* PAGINATION */}
       <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>

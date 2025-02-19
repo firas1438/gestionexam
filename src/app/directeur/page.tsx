@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from 'react';
-import Pagination from "@/components/Pagination";
+import { useState } from "react";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
 import { directeurData } from "@/lib/data";
 import Image from "next/image";
 import UserCard from "@/components/UserCard";
-import DepartmentCard from '@/components/DepartmentCard';
+import DepartmentCard from "@/components/DepartmentCard";
 
 type Exam = {
   exam_id: number;
@@ -35,30 +34,22 @@ const columns = [
   { header: "Surveillant", accessor: "surveillant" },
 ];
 
-const ITEMS_PER_PAGE = 10;
+const renderRow = (item: Exam) => (
+  <tr key={item.exam_id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
+    <td className="p-5">{item.exam_id}</td>
+    <td>{item.subject}</td>
+    <td>{item.department_id}</td>
+    <td>{item.exam_date}</td>
+    <td>{item.start_time}</td>
+    <td>{item.end_time}</td>
+    <td>{item.duration}</td>
+    <td>{item.coefficient}</td>
+    <td>{item.salle}</td>
+    <td>{item.surveillant}</td>
+  </tr>
+);
 
 export default function DirecteurPage() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(directeurData.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentData = directeurData.slice(startIndex, endIndex);
-
-  const renderRow = (item: Exam) => (
-    <tr key={item.exam_id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight">
-      <td className="p-5">{item.exam_id}</td>
-      <td>{item.subject}</td>
-      <td>{item.department_id}</td>
-      <td>{item.exam_date}</td>
-      <td>{item.start_time}</td>
-      <td>{item.end_time}</td>
-      <td>{item.duration}</td>
-      <td>{item.coefficient}</td>
-      <td>{item.salle}</td>
-      <td>{item.surveillant}</td>
-    </tr>
-  );
-
   return (
     <div className="p-4 flex flex-col items-center w-full">
       {/* USER CARDS */}
@@ -91,40 +82,33 @@ export default function DirecteurPage() {
         </div>
 
         {/* LIST */}
-        <Table columns={columns} renderRow={renderRow} data={currentData} />
+        <div className="mt-5 w-full overflow-auto max-h-[500px]">
+          <Table columns={columns} renderRow={renderRow} data={directeurData} />
+        </div>
 
-        {/* PAGINATION */}
-        <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />
       </div>
 
       {/* DEP CARDS */}
       <div className="flex flex-wrap justify-center gap-3 w-full mt-10">
-        {/* CARD0 */}
         <DepartmentCard imageSrc="/logo.png" title="Tous les départements" />
-
-        {/* CARD1 */}
         <DepartmentCard
           imageSrc="/lap.png"
           title="Département Informatique"
           statusText="Status de validation:"
           statusIcon="/validated.png"
         />
-
-        {/* CARD2 */}
         <DepartmentCard
           imageSrc="/math.png"
           title="Département Mathématiques"
           statusText="Status de validation:"
           statusIcon="/notvalidated.png"
         />
-
-        {/* CARD3 */}
         <DepartmentCard
           imageSrc="/elec.png"
           title="Département Electrique"
           statusText="Status de validation:"
           statusIcon="/notvalidated.png"
-          imageClassName="absolute w-40 h-40 mb-14 -right-16 -bottom-16" // Custom positioning for this card
+          imageClassName="absolute w-40 h-40 mb-14 -right-16 -bottom-16"
         />
       </div>
 
@@ -155,7 +139,6 @@ export default function DirecteurPage() {
           Valider toutes les entrées
         </button>
       </div>
-      
     </div>
   );
 }

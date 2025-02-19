@@ -88,7 +88,9 @@ const ExamListPage = () => {
       </div>
 
       {/* LIST */}
-      <Table columns={columns} renderRow={renderRow} data={currentData} />
+      <div className="mt-9">
+        <Table columns={columns} renderRow={renderRow} data={currentData} />
+      </div>
 
       {/* PAGINATION */}
       <Pagination totalPages={totalPages} onPageChange={setCurrentPage} />

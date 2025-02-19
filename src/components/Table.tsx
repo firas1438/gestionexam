@@ -8,13 +8,13 @@ const Table = ({
   data: any[];
 }) => {
   return (
-    <table className="w-full mt-8 mb-3">
+    <table className="w-full mt-4 mb-3">
       <thead>
         <tr className="text-left text-gray-900 text-sm">
           {columns.map((col) => (
             <th
               key={col.accessor}
-              className={`pb-2 ${col.className || ""}`} // Adds spacing below the headers
+              className={`pb-3 ${col.className || ""}`} // Adds spacing below the headers
             >
               {col.header}
             </th>

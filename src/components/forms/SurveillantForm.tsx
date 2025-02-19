@@ -9,7 +9,7 @@ import Table from "../Table";
 
 const schema = z.object({
   examen: z.string().min(1, { message: "Examen est requis!" }),
-  salle: z.string(),
+  salle: z.string().min(1, { message: "L'examen doit être réservé dans une salle auparavant !" }),
   date: z.string(),
   duration: z.string(), 
   debut: z.string(),
@@ -159,25 +159,25 @@ const SurveillantForm = ({type,data,id}: {
       {type === "view" && (
          <div className="flex flex-col gap-4 mt-3">
             {/* TITRE */}
-            <h1 className="text-lg font-semibold text-center">Liste de surveillance d'enseignant</h1>
+            <h1 className="text-lg font-semibold text-center mb-2">Liste de surveillance d'enseignant</h1>
         
             {/* CONTENU */}
-            <div className="overflow-y-auto max-h-[400px]">
-            <Table
-              columns={columns}
-              data={data}
-              renderRow={(item) => (
-                <tr key={item.examen} className="border-b border-gray-200 odd:bg-slate-50 text-sm hover:bg-lamaPurpleLight text-center">
-                  <td className="p-4">{item.examen}</td>
-                  <td className="p-4">{item.salle}</td>
-                  <td className="p-4">{item.date}</td>
-                  <td className="p-4">{item.duration}</td>
-                  <td className="p-4">{item.debut}</td>
-                  <td className="p-4">{item.fin}</td>
-                </tr>
-              )}
-            />
-          </div>
+            <div className="overflow-y-auto max-h-[420px] border border-gray-300 rounded-lg">
+                <Table
+                  columns={columns}
+                  data={data}
+                  renderRow={(item) => (
+                    <tr key={item.examen} className="border-b border-gray-200 odd:bg-slate-50 text-sm hover:bg-lamaPurpleLight text-center">
+                      <td className="p-4">{item.examen}</td>
+                      <td className="p-4">{item.salle}</td>
+                      <td className="p-4">{item.date}</td>
+                      <td className="p-4">{item.duration}</td>
+                      <td className="p-4">{item.debut}</td>
+                      <td className="p-4">{item.fin}</td>
+                    </tr>
+                  )}
+                />
+              </div>
 
          </div>
           

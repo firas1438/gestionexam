@@ -139,10 +139,10 @@ const RoomReservationForm = ({ type, data, id }: {
       {type === "view" && (
         <div className="flex flex-col gap-4 mt-3">
           {/* TITRE */}
-          <h1 className="text-lg font-semibold text-center">Liste des réservations du salle</h1>
+          <h1 className="text-lg font-semibold text-center mb-2">Liste des réservations du salle</h1>
 
           {/* CONTENU */}
-          <div className="overflow-y-auto max-h-[400px]">
+          <div className="overflow-y-auto max-h-[420px] border border-gray-300 rounded-lg ">
             <Table
               columns={columns}
               data={data}
