@@ -1,5 +1,7 @@
 // TEMPORARY DATA
 
+import { date } from "zod";
+
 export let role = "admin";
 
 export const teachersData = [
@@ -700,6 +702,21 @@ export const subjectsDataTest = [
     coefficient: 2,
     duration: "1.5h",
     salle: "B21",
+  },
+];
+
+export const roomreservationdata = [
+  {
+    examen: "Programmation Mobile",
+    coefficient: 2,
+    date: "23/02/2025",
+    duree: "1h",
+  },
+  {
+    examen: "Analyse 3",
+    coefficient: 1.5,
+    date: "24/02/2025",
+    duree: "1.5h",
   },
 ];
 

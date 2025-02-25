@@ -11,29 +11,32 @@ import SurveillantForm from "./forms/SurveillantForm";
 type FormType = "create" | "update" | "delete" | "reserve" | "view" | "assign";
 
 // Define the forms object
+// Define the forms object
 const forms: {
-  [key: string]: (type: FormType, data?: any, id?: number) => JSX.Element;
+  [key: string]: (type: FormType, handleClose: () => void, data?: any, id?: number) => JSX.Element;
 } = {
-  exam: (type, data, id) => {
+
+  exam: (type, handleClose, data, id) => {
     if (type === "create" || type === "update") {
-      return <ExamForm type={type} data={data} id={id} />;
+      return <ExamForm type={type} data={data} id={id} handleClose={handleClose} />;
     }
-    return <span className="text-red-500">Invalid type for ExamForm!</span>;
+    return <span className="text-red-500">Type invalide pour ExamForm!</span>;
   },
 
-  salle: (type, data, id) => {
+  salle: (type, handleClose, data, id) => {
     if (type === "reserve" || type === "view") {
-      return <RoomReservationForm type={type} data={data} id={id} />;
+      return <RoomReservationForm type={type} data={data} id={id} handleClose={handleClose} />;
     }
-    return <span className="text-red-500">Invalid type for RoomReservationForm!</span>;
+    return <span className="text-red-500">Type invalide pour RoomReservationForm!</span>;
   },
 
-  surveillant: (type, data, id) => {
+  surveillant: (type, handleClose, data, id) => {
     if (type === "assign" || type === "view") {
-      return <SurveillantForm type={type} data={data} id={id} />;
+      return <SurveillantForm type={type} data={data} id={id} handleClose={handleClose} />;
     }
-    return <span className="text-red-500">Invalid type for SurveillantForm!</span>;
+    return <span className="text-red-500">Type invalide pour SurveillantForm!</span>;
   },
+  
 };
 
 const FormModal = ({ table, type, data, id }: {
@@ -52,6 +55,11 @@ const FormModal = ({ table, type, data, id }: {
 
   const [open, setOpen] = useState(false);
 
+  // Handle modal close
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const Form = () => {
     // DELETE LOGIC
     if (type === "delete" && id) {
@@ -61,7 +69,7 @@ const FormModal = ({ table, type, data, id }: {
           <span className="text-center font-medium">
             Toutes les données seront perdues. Êtes-vous sûr?
           </span>
-          <button className="bg-red-700 text-white mt-2 py-2 px-20 rounded-md border-none w-max self-center">
+          <button className="bg-red-700 text-white mt-2 py-2 px-20 rounded-md border-none w-max self-center" onClick={handleClose}>
             Supprimer
           </button>
         </form>
@@ -70,7 +78,7 @@ const FormModal = ({ table, type, data, id }: {
 
     // Render the appropriate form based on the table and type
     if (forms[table]) {
-      return forms[table](type, data, id);
+      return forms[table](type, handleClose, data, id);
     }
 
     // If no form is found
@@ -100,12 +108,10 @@ const FormModal = ({ table, type, data, id }: {
       {open && (
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center">
           {/* Conditional width based on type */}
-          <div className={`bg-white p-4 rounded-md relative ${
-            type === "view" ? "w-[80%] lg:w-[70%] xl:w-[60%]" : "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]"
-          }`}>
+          <div className={`bg-white p-4 rounded-md relative ${type === "view" ? "w-[80%] lg:w-[70%] xl:w-[60%]" : "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]"}`}>
             <Form />
             {/* Close button */}
-            <div className="absolute top-4 right-4 cursor-pointer" onClick={() => setOpen(false)}>
+            <div className="absolute top-4 right-4 cursor-pointer" onClick={handleClose}>
               <Image src="/close.png" alt="Close" width={14} height={14} />
             </div>
           </div>

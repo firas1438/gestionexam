@@ -9,7 +9,7 @@ import Table from "../Table";
 
 const schema = z.object({
   examen: z.string().min(1, { message: "Examen est requis!" }),
-  salle: z.string().min(1, { message: "L'examen doit être réservé dans une salle auparavant !" }),
+  salle: z.string(),
   date: z.string(),
   duration: z.string(), 
   debut: z.string(),
@@ -19,10 +19,11 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 
-const SurveillantForm = ({type,data,id}: {
+const SurveillantForm = ({type,data,id, handleClose}: {
   type: "assign" | "view";
   data?: any;
   id?: number;
+  handleClose: () => void; 
 }) => {
   const {
     register,
@@ -34,6 +35,7 @@ const SurveillantForm = ({type,data,id}: {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    handleClose();
   });
 
   

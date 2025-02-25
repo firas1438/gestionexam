@@ -14,10 +14,11 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>;
 
-const ExamForm = ({type,data,id}: {
+const ExamForm = ({type,data,id, handleClose}: {
   type: "create" | "update";
   data?: any;
   id?: number;
+  handleClose: () => void; 
 }) => {
   const {
     register,
@@ -29,6 +30,7 @@ const ExamForm = ({type,data,id}: {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    handleClose();
   });
 
   return (
@@ -83,6 +85,7 @@ const ExamForm = ({type,data,id}: {
                 <option value="1">1h</option>
                 <option value="1.5">1.5h</option>
                 <option value="2">2h</option>
+                <option value="2">3h</option>
               </select>
               {errors.duration && (
                 <span className="text-red-500 text-xs">{errors.duration.message}</span>
@@ -91,13 +94,18 @@ const ExamForm = ({type,data,id}: {
 
 
             {/* Date Field */}
-            <InputField
-              label="Date"
-              name="date"
-              type="date"
-              register={register}
-              error={errors?.date}
-            />
+            <div className="flex flex-col gap-2 w-full">
+              <label className="text-xs text-gray-500">Date</label>
+              <input
+                type="date"
+                {...register("date")}
+                className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+              />
+              {errors.date && (
+                <span className="text-red-500 text-xs">{errors.date.message}</span>
+              )}
+            </div>
+            
           </div>
 
           {/* BUTTON CREER */}
@@ -150,13 +158,17 @@ const ExamForm = ({type,data,id}: {
             </div>
 
             {/* Date Field */}
-            <InputField
-              label="Date"
-              name="date"
-              type="date"
-              register={register}
-              error={errors?.date}
-            />
+            <div className="flex flex-col gap-2 w-full">
+              <label className="text-xs text-gray-500">Date</label>
+              <input
+                type="date"
+                {...register("date")}
+                className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+              />
+              {errors.date && (
+                <span className="text-red-500 text-xs">{errors.date.message}</span>
+              )}
+            </div>
 
           </div>
 
@@ -168,6 +180,7 @@ const ExamForm = ({type,data,id}: {
 
     </>
   );
+  
 };
 
 export default ExamForm;
